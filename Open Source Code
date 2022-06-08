@@ -1,0 +1,197 @@
+getgenv().AutoCash = false;
+getgenv().AutobuyBloxyCola = false;
+
+
+
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
+
+local w = library:CreateWindow("Magic Show 2") -- Creates the window
+
+local c = w:CreateFolder("Main") -- Creates the folder(U will put here your buttons,etc)
+
+local b = w:CreateFolder("Auto Farms")
+
+b:Label("Toggles",{
+    TextSize = 25; -- Self Explaining
+    TextColor = Color3.fromRGB(255,255,255); -- Self Explaining
+    BgColor = Color3.fromRGB(69,69,69); -- Self Explaining
+    
+}) 
+
+b:Toggle("Auto Cash", function(bool)
+    getgenv().AutoCash = bool
+    print("Auto Cash is: ", bool);
+
+    if bool then
+        cashRemoteSpam();
+    end
+
+end)
+
+b:Toggle("Auto Buy Bloxy Cola", function(bool)
+    getgenv().AutobuyBloxyCola = bool
+    print("Auto Buy Bloxy Cola is: ", bool);
+
+    if bool then
+        buyRemoteBloxy();
+    end
+
+end)
+
+c:Button("Get Key Fragments", function()
+
+    wait(0.3)
+    local args = {
+        [1] = "KeyFragment",
+        [2] = "GiveItem"
+    }
+    
+    game:GetService("ReplicatedStorage").Remotes.ItemEvent:FireServer(unpack(args))
+    
+    wait(0.3)
+
+    local args = {
+        [1] = "KeyFragment",
+        [2] = "GiveItem"
+    }
+    
+    game:GetService("ReplicatedStorage").Remotes.ItemEvent:FireServer(unpack(args))
+    
+    wait(0.3)
+
+    local args = {
+        [1] = "KeyFragment",
+        [2] = "GiveItem"
+    }
+    
+    game:GetService("ReplicatedStorage").Remotes.ItemEvent:FireServer(unpack(args))
+    
+
+end)
+
+c:Button("Get TNT", function()
+
+    local args = {
+        [1] = "TNT",
+        [2] = "GiveItem"
+    }
+    
+    game:GetService("ReplicatedStorage").Remotes.ItemEvent:FireServer(unpack(args))
+    
+end)
+
+
+c:Button("Get Cheese", function()
+
+    local args = {
+        [1] = "Cheese",
+        [2] = "GiveItem"
+    }
+    
+    game:GetService("ReplicatedStorage").Remotes.ItemEvent:FireServer(unpack(args))
+
+end)
+
+c:Button("Secret Ending", function()
+
+    
+    local args = {
+        [1] = "SecretCode",
+        [2] = "GiveItem"
+    }
+    
+    game:GetService("ReplicatedStorage").Remotes.ItemEvent:FireServer(unpack(args))
+    
+    wait(3)
+
+    game:GetService("ReplicatedStorage").Remotes.TeleportEvent2:FireServer()
+
+
+end)
+
+
+c:Button("Buy Teddy", function()
+
+    local args = {
+        [1] = "TeddyBear",
+        [2] = false
+    }
+    
+    game:GetService("ReplicatedStorage").Remotes.BuyFunction:InvokeServer(unpack(args))
+    
+
+
+end)
+
+
+c:Button("Buy Sus Pizza", function()
+
+    local args = {
+        [1] = "SuspiciousPizza",
+        [2] = false
+    }
+    
+    game:GetService("ReplicatedStorage").Remotes.BuyFunction:InvokeServer(unpack(args))
+    
+
+
+end)
+
+c:Button("Buy Latern", function()
+
+    local args = {
+        [1] = "SuspiciousPizza",
+        [2] = false
+    }
+    
+    game:GetService("ReplicatedStorage").Remotes.BuyFunction:InvokeServer(unpack(args))
+    
+
+
+end)
+
+c:Button("Buy Crowbar", function()
+
+    local args = {
+        [1] = "Crowbar",
+        [2] = true
+    }
+    
+    game:GetService("ReplicatedStorage").Remotes.BuyFunction:InvokeServer(unpack(args))
+
+end)
+
+function cashRemoteSpam()
+    spawn(function()
+        while getgenv().AutoCash == true do
+            wait()
+            local args = {
+                [1] = "Add",
+                [2] = "CashCollect"
+            }
+            
+            game:GetService("ReplicatedStorage").Remotes.CurrencyEvent:FireServer(unpack(args))
+
+
+        end
+
+    end)
+end
+
+function buyRemoteBloxy()
+    spawn(function()
+        while getgenv().AutobuyBloxyCola == true do
+            wait(0.5)
+            local args = {
+                [1] = "Bloxycola",
+                [2] = false
+            }
+            
+            game:GetService("ReplicatedStorage").Remotes.BuyFunction:InvokeServer(unpack(args))
+            
+
+
+        end
+     
+    end)
+end
